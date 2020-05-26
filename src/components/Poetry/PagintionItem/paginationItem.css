@@ -1,0 +1,18 @@
+.poetry__pagination .pagination__item{
+    border: 1px solid #f0ffff;
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 3px 7px;
+    margin: 0 4px;
+    font-size: 18px;
+}
+
+.poetry__pagination .pagination__item:hover{
+    background: #f0ffff83;
+}
+
+.poetry__pagination .pagination__item-active{
+    color: #444444;
+    background: #f0ffff;    
+}

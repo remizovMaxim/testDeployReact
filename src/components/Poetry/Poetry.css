@@ -1,0 +1,11 @@
+.poetry__wrapper{
+    position: relative;    
+    width: 100%;
+    max-width: 768px;
+    margin: 160px auto 0;
+}
+
+.poetry__pagination{
+    margin-top: 50px;
+    margin-left: 10px;
+}
