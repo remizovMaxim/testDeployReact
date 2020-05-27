@@ -39,7 +39,7 @@ let initialState: InitialStateType = {
 
 const poetryPageReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case SET_POETRY_ITEMS:
+        case SET_POETRY_ITEMS:            
             return {
                 ...state,
                 poetryItemsArray: action.arr

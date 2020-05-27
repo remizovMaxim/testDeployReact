@@ -2,7 +2,7 @@ import React from 'react';
 import './PoetryItem.css';
 import { NavLink } from 'react-router-dom';
 
-let PoetryItem: React.FC<{ name: string, author: string, year: string, book: string, url: string, key: number }> = (props) => {
+let PoetryItem: React.FC<{ name: string, author: string, year: string, book: string, url: string, key: string }> = (props) => {
     return (<>
         <NavLink to={props.url} className='poetry__item'>
             <div className="poetry__item_column poetry__item_column_name">{props.name}</div>

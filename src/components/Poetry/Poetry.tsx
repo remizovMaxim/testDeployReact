@@ -5,6 +5,8 @@ import PoetryItem from './PoetryItem/PoetryItem';
 import PagintaionItem from './PagintionItem/PaginationItem';
 import backendService from '../../backendService';
 import SearchBlockContainer from '../common/SearchBlock/SearchBlockContainer';
+import FilterBlockContainer from '../common/FilterBlock/FilterBlockContainer';
+const shortid = require('shortid');
 
 type PropsType = {
     currentPage: number
@@ -43,12 +45,14 @@ class Poetry extends React.Component<PropsType>{
             year={i.year}
             book={i.book}
             url={`/poetry-page/${i.id}`}
-            key={+i.id}
+            key={shortid.generate()}
         />);                   
 
         return (<div className='poetry__wrapper'>            
 
             <SearchBlockContainer />
+
+            <FilterBlockContainer />
 
             <div className="poetry__block">
                 {this.pageItemsRender(poetryArray, this.props.currentPage, this.props.sizePage)}

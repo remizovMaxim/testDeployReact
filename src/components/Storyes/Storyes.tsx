@@ -3,6 +3,7 @@ import './Storyes.css';
 import { poetryItemType } from '../../redux/poetryPageReducer';
 import StoryItem from './StoryesItem/StoryesItem';
 import backendService from '../../backendService';
+const shortid = require('shortid');
 
 type PropsType = {
     storyesPageItems: Array<poetryItemType>
@@ -21,7 +22,7 @@ class Storyes extends React.Component<PropsType>{
             year={i.year}
             book={i.book}
             url={`/story-page:${i.id}`}
-            key={+i.id}
+            key={shortid.generate()}
         />)
         return <div className='storyes__wrapper'>
             {storyesItems}

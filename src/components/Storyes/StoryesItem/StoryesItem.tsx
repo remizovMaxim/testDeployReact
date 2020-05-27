@@ -1,7 +1,7 @@
 import React from 'react';
 import PoetryItem from '../../Poetry/PoetryItem/PoetryItem';
 
-let StoryItem: React.FC<{ name: string, author: string, year: string, book: string, url: string, key: number }> = (props) => {
+let StoryItem: React.FC<{ name: string, author: string, year: string, book: string, url: string, key: string }> = (props) => {
     return (<PoetryItem 
         name={props.name} 
         author={props.author} 

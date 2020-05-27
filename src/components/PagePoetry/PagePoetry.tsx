@@ -22,24 +22,23 @@ class PagePoetry extends React.Component<PropsType>{
     }
 
     render() {
-        let id = this.props.match.params.id;
-
-        const itemCondition = (item: any) => {
+        const id = this.props.match.params.id;
+        const itemCondition = (item: poetryItemType) => {
             if (+item.id === +id) return item;
         }
 
-        let page = this.props.poetryPage.find(itemCondition);
+        const poetryObject = this.props.poetryPage.find(itemCondition);
 
         let keyId: number = 0;
-        let text = page ? page.text.map((i: string) => {
+        const poetryRows = poetryObject ? poetryObject.text.map((i: string) => {
             return <p className='poetry-page__wrapper_row' key={keyId++}>{i}</p>
         }) : '';
 
         return (<div className='poetry__wrapper'>
             <div className='poetry-page__wrapper'>
-                <p className='poetry-page__wrapper_name'>{page ? page.name : ''}</p>
-                {text}
-                <p className='poetry-page__wrapper_author'>{page ? page.author : ''}</p>
+                <p className='poetry-page__wrapper_name'>{poetryObject ? poetryObject.name : ''}</p>
+                {poetryRows}
+                <p className='poetry-page__wrapper_author'>{poetryObject ? poetryObject.author : ''}</p>
             </div>
             <NavigationButtonsContainer />
         </div>)
