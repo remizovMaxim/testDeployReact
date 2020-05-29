@@ -4,7 +4,7 @@ import backendService from '../../../backendService';
 import { poetryItemType } from '../../../redux/poetryPageReducer';
 
 type PropsType = {
-    poetryArray: any
+    poetryArray: Array<poetryItemType>
     searchWord: string
     setSearchWordInput(searchWord: string):void
     setPoetryItems(arr: Array<poetryItemType>):void

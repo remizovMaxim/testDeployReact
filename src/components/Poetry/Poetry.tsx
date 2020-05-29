@@ -19,7 +19,7 @@ type PropsType = {
 
 class Poetry extends React.Component<PropsType>{
     componentDidMount() {
-        backendService.backendPoetry(this.props.setPoetryItems);
+        backendService.backendPoetry(this.props.setPoetryItems);        
     }
 
     pageItemsRender = (arrayItems: Array<{}>, currentPage: number, sizePage: number) => {
@@ -46,15 +46,15 @@ class Poetry extends React.Component<PropsType>{
             book={i.book}
             url={`/poetry-page/${i.id}`}
             key={shortid.generate()}
-        />);                   
+        />);
 
-        return (<div className='poetry__wrapper'>            
+        return (<div className='poetry__wrapper'>
 
             <SearchBlockContainer />
 
             <FilterBlockContainer />
 
-            <div className="poetry__block">
+            <div className="poetry__block">                
                 {this.pageItemsRender(poetryArray, this.props.currentPage, this.props.sizePage)}
             </div>
             <div className="poetry__pagination">
