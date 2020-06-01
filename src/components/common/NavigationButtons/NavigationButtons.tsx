@@ -26,13 +26,13 @@ const NavigationButtonsLayout = (props: PropsType) => {
     const getLinkToButtons = (id: string) => {
         if (+id === 1) {
             return (<>
-                <div className={`${prev} ${prevDisabled}`}><a onClick={(e)=>e.preventDefault()}>"♦prev"</a></div>
+                <div className={`${prev} ${prevDisabled}`}><a href='url/' onClick={(e)=>e.preventDefault()}>"♦prev"</a></div>
                 <div className={`${next}`}><NavLink to={`${url +id + 1}`}>"next♦"</NavLink></div>
             </>)
         } else if (+id >= lastNumberItem) {
             return (<>
                 <div className={`${prev}`}><NavLink to={`${url}${+id - 1}`}>"♦prev"</NavLink></div>
-                <div className={`${next} ${nextDisabled}`}><a onClick={(e)=>e.preventDefault()}>"next♦"</a></div>
+                <div className={`${next} ${nextDisabled}`}><a href='url/' onClick={(e)=>e.preventDefault()}>"next♦"</a></div>
             </>)
         } else {
             return (<>

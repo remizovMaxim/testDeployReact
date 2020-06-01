@@ -22,9 +22,11 @@ class Storyes extends React.Component<PropsType>{
             year={i.year}
             book={i.book}
             url={`/story-page:${i.id}`}
+            id={String(i.id)}
             key={shortid.generate()}
         />)
         return <div className='storyes__wrapper'>
+            <h1 className='common__title'>Рассказы</h1>
             {storyesItems}
         </div>
     }

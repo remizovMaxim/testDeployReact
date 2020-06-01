@@ -1,29 +1,20 @@
+import { poetryItemType } from './poetryPageReducer';
 const SET_POETRY_ITEMS = 'SET_POETRY_ITEMS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_CURRENT_PAGE = 'SET_CURRENT_FAVORITE_PAGE';
 
-export type poetryItemType = {
-    id: number
-    name: string
-    author: string
-    year: string
-    book: string
-    background: string
-    isFavorite: boolean
-    text: Array<string>
-}
 
 export type InitialStateType = {
     currentPage: number
     sizePage: number
-    poetryItemsArray: Array<poetryItemType>
+    favoriteItemsArray: Array<poetryItemType>
 };
 
-type ActionsType = SetPoetryItemsActionType | SetCurrentPageActionType;
+type ActionsType = SetFavoriteItemsActionType | SetCurrentPageActionType;
 
 let initialState: InitialStateType = {
     currentPage: 1,
     sizePage: 10,
-    poetryItemsArray: [
+    favoriteItemsArray: [
         {
             id: 0,
             name: "Идёт загрузка...",
@@ -37,12 +28,12 @@ let initialState: InitialStateType = {
     ]
 };
 
-const poetryPageReducer = (state = initialState, action: ActionsType): InitialStateType => {
+const favoritePageReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case SET_POETRY_ITEMS:
+        case SET_POETRY_ITEMS:            
             return {
                 ...state,
-                poetryItemsArray: action.arr
+                favoriteItemsArray: action.arr
             }
         case SET_CURRENT_PAGE:
             return {
@@ -54,13 +45,13 @@ const poetryPageReducer = (state = initialState, action: ActionsType): InitialSt
     }
 }
 
-export type SetPoetryItemsActionType = {
+export type SetFavoriteItemsActionType = {
     type: typeof SET_POETRY_ITEMS
     arr: Array<poetryItemType>
 }
 
 
-export const setPoetryItemsAC = (arr: Array<poetryItemType>): SetPoetryItemsActionType => {
+export const setPoetryItemsAC = (arr: Array<poetryItemType>): SetFavoriteItemsActionType => {
     return {
         type: SET_POETRY_ITEMS,
         arr: arr
@@ -78,6 +69,5 @@ export const setCurrentPage = (currentPage: number): SetCurrentPageActionType =>
         currentPage: currentPage
     }
 }
-
 export type Dispatch = (action: ActionsType) => void;
-export default poetryPageReducer;
+export default favoritePageReducer;

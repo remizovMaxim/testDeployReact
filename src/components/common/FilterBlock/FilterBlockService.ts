@@ -1,53 +1,19 @@
-import { ConditionSortType, SORT_NAME, SORT_AUTHOR, SORT_YEAR, SORT_BOOK } from './../../../redux/filterReducer';
-import { poetryItemType } from '../../../redux/poetryPageReducer';
+export function sortArray<T, K extends keyof T>(originArr: T[], propertyName: K, cb: (a: T[]) => void): void {
 
-export function sortArray<T extends Array<poetryItemType>>(originArr: T, conditionSort: ConditionSortType, cb: (a: T) => void): void | T {
-    let arr: T = JSON.parse(JSON.stringify(originArr));
-    let resultSort: T = arr;
-    switch (conditionSort) {
-        case SORT_NAME:
-            resultSort = arr.sort((a: poetryItemType, b: poetryItemType) => {
-                let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
-                if (nameA < nameB)
-                    return -1;
-                if (nameA > nameB)
-                    return 1;
-                return 0;
-            })
+    let arr: T[] = JSON.parse(JSON.stringify(originArr));
 
-            return cb(resultSort);
 
-        case SORT_AUTHOR:
-            resultSort = arr.sort((a: poetryItemType, b: poetryItemType) => {
-                let nameA = a.author.toLowerCase(), nameB = b.author.toLowerCase();
-                if (nameA < nameB)
-                    return -1;
-                if (nameA > nameB)
-                    return 1;
-                return 0;
-            })
+    arr.sort((a, b) => {
 
-            return cb(resultSort);
+        let nameA = String(a[propertyName]).toLowerCase(),
+            nameB = String(b[propertyName]).toLowerCase();
 
-        case SORT_YEAR:
-            resultSort = arr.sort((a: poetryItemType, b: poetryItemType) => {
-                return +a.year - +b.year;
-            })
+        if (nameA < nameB)
+            return -1;
+        if (nameA > nameB)
+            return 1;
+        return 0;
+    });
 
-            return cb(resultSort);
-
-        case SORT_BOOK:
-            resultSort = arr.sort((a: poetryItemType, b: poetryItemType) => {
-                let nameA = a.book.toLowerCase(), nameB = b.book.toLowerCase();
-                if (nameA < nameB)
-                    return -1;
-                if (nameA > nameB)
-                    return 1;
-                return 0;
-            })
-
-            return cb(resultSort);
-
-        default: return resultSort;
-    }
+    return cb(arr);
 }

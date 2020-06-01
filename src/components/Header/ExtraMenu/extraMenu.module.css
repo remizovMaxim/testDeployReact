@@ -1,0 +1,35 @@
+.extra__wrapper{
+    position: absolute;
+    top: 70px;
+    left: 0;
+}
+.extra__button{
+    display: inline;
+    cursor: pointer;
+}
+.extra__button_dot{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background: #f0ffff;
+    margin: 2px;
+}
+.extra__menu{
+    position: relative;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    margin-top: 30px;
+}
+.extra__menu_item{
+    display: block;
+}
+.extra__menu_item a{
+    text-decoration: none;
+    color: #f0ffff;
+    font-size: 32px;
+}
+
+.extra__wrapper:hover .extra__menu{
+    opacity: 1;
+}

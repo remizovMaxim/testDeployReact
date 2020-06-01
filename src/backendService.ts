@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { poetryItemType } from './redux/poetryPageReducer';
 
-type modeType = 'story' | 'poetry';
+type modeType = 'story' | 'poetry' | 'favorite';
 
 const errorMessage: Array<poetryItemType> = [
     {
@@ -22,9 +22,23 @@ let backendService = {
             .then((response: any) => {
                 let requestArr: Array<poetryItemType> = 
                 (responseMode === 'story') ? response.data.storyesData.data : response.data.poetryData.data;
+                            
+                const myStorage = localStorage.getItem('favoriteStorage');
+                
+                let arrFavorite: Array<poetryItemType> = [];
                 requestArr.forEach((i)=>{
-                    if(i.name === '***') i.name = i.text[0]
-                })
+                    if(i.name === '***') i.name = i.text[0];                                        
+                    if(myStorage !== null && myStorage.split(',').includes(String(i.id))){
+                        i.isFavorite = true;
+                    }
+                    if(responseMode === 'favorite' && i.isFavorite){
+                        console.log('favorite push')
+                        arrFavorite.push(i)                
+                    }
+                });
+
+                requestArr = (responseMode === 'favorite') ? arrFavorite : requestArr;
+                
                 setFunction(requestArr);
             })
             .catch(error => {
@@ -37,6 +51,9 @@ let backendService = {
     },
     backendPoetry: (setItems: (arr: Array<poetryItemType>) => void) => {
         backendService.requestToServer(setItems, 'poetry')        
+    },
+    backendFavorite: (setItems: (arr: Array<poetryItemType>) => void) => {
+        backendService.requestToServer(setItems, 'favorite')        
     }
 }
 

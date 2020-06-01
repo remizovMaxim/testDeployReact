@@ -1,5 +1,5 @@
 .header{
-    position: fixed;
+    position: relative;
     top: 0;
     right: 0;
     left: 0;
@@ -18,10 +18,12 @@
 .header__menu__block{   
     width: 50%; 
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: center;
 }
 .header__menu__block_item{
+    position: relative;
     margin: 3px 10px;
 }
 .header__menu__block_item a{

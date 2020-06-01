@@ -1,17 +1,19 @@
-import { setCurrentPage } from './../../redux/poetryPageReducer';
+import { poetryItemType } from './../../redux/poetryPageReducer';
+import { setCurrentPage } from './../../redux/favoritePageReducer';
 import { setBackgroundAC, Dispatch as DispatchBG } from "./../../redux/backgroundRedecur";
 import { connect } from 'react-redux';
-import { setPoetryItemsAC, poetryItemType, Dispatch } from '../../redux/poetryPageReducer';
+import { setPoetryItemsAC, Dispatch } from '../../redux/favoritePageReducer';
 import { State } from '../../redux/store';
-import Poetry from './Poetry';
+import Poetry from '../Poetry/Poetry';
 import backendService from '../../backendService';
 
+
 const mapState = (state: State) => ({
-    namePage: 'Стихи',
-    currentPage: state.poetryPage.currentPage,
-    sizePage: state.poetryPage.sizePage,
-    poetryPage: state.poetryPage.poetryItemsArray,
-    backendService: backendService.backendPoetry    
+    namePage: 'Избранное',
+    currentPage: state.favoritePage.currentPage,
+    sizePage: state.favoritePage.sizePage,
+    poetryPage: state.favoritePage.favoriteItemsArray,
+    backendService: backendService.backendFavorite
 })
 
 const mapDispatch = (dispatch: Dispatch & DispatchBG) => ({
@@ -26,6 +28,6 @@ const mapDispatch = (dispatch: Dispatch & DispatchBG) => ({
     }
 })
 
-let PoetryContainer = connect(mapState, mapDispatch)(Poetry);
+const FavoritePageContainer = connect(mapState, mapDispatch)(Poetry);
 
-export default PoetryContainer;
+export default FavoritePageContainer;

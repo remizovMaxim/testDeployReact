@@ -4,13 +4,17 @@ export const SORT_NAME = 'SORT_NAME';
 export const SORT_AUTHOR = 'SORT_AUTHOR';
 export const SORT_YEAR = 'SORT_YEAR';
 export const SORT_BOOK = 'SORT_BOOK';
+export const SORT_NUMBER = 'SORT_NUMBER';
+export const SORT_STRING = 'SORT_STRING';
 export const NULL_STR = '';
 
 export type ConditionSortType =
     typeof SORT_NAME |
     typeof SORT_AUTHOR |
     typeof SORT_YEAR |
-    typeof SORT_BOOK |
+    typeof SORT_BOOK |    
+    typeof SORT_NUMBER |
+    typeof SORT_STRING |
     typeof NULL_STR;
 
 export type InitialStateType = {

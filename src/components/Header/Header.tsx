@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import logoImg from '../../assets/img/logo.png';
 import { NavLink } from 'react-router-dom';
+import ExtraMenu from './ExtraMenu/ExtraMenu';
 
 
 const Header: React.FC<{}> = () => {
@@ -16,10 +17,12 @@ const Header: React.FC<{}> = () => {
                 <div className="header__menu__block header__menu__block-left">
                     <div className="header__menu__block_item">
                         <NavLink to='/about'>Об авторе<span></span></NavLink>
+
+                        <ExtraMenu />
                     </div>
                     <div className="header__menu__block_item">
                         <NavLink to='/poetry'>Стихи<span></span></NavLink>
-                    </div>
+                    </div>                    
                 </div>
                 <div className="header__menu__block header__menu__block-right">
                     <div className="header__menu__block_item">

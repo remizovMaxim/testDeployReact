@@ -1,8 +1,6 @@
 .about__wrapper{
-    position: relative;
-    margin-top: 160px;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;    
     width: 100%;
-    max-width: 1024px;
+    max-width: 768px;
+    margin: 16px auto 0;
 }

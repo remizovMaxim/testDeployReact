@@ -3,15 +3,16 @@ import React from 'react';
 import { poetryItemType } from '../../redux/poetryPageReducer';
 import PoetryItem from './PoetryItem/PoetryItem';
 import PagintaionItem from './PagintionItem/PaginationItem';
-import backendService from '../../backendService';
 import SearchBlockContainer from '../common/SearchBlock/SearchBlockContainer';
 import FilterBlockContainer from '../common/FilterBlock/FilterBlockContainer';
 const shortid = require('shortid');
 
 type PropsType = {
+    namePage: string
     currentPage: number
     sizePage: number
     poetryPage: Array<poetryItemType>
+    backendService(setItems: (arr: Array<poetryItemType>) => void): void
     setBackground(url: string): void
     setPoetryItems(arr: Array<poetryItemType>): void
     setCurrentPage(currentPage: number): void
@@ -19,7 +20,7 @@ type PropsType = {
 
 class Poetry extends React.Component<PropsType>{
     componentDidMount() {
-        backendService.backendPoetry(this.props.setPoetryItems);        
+        this.props.backendService(this.props.setPoetryItems);
     }
 
     pageItemsRender = (arrayItems: Array<{}>, currentPage: number, sizePage: number) => {
@@ -45,16 +46,18 @@ class Poetry extends React.Component<PropsType>{
             year={i.year}
             book={i.book}
             url={`/poetry-page/${i.id}`}
+            id={String(i.id)}
             key={shortid.generate()}
         />);
 
         return (<div className='poetry__wrapper'>
+            <h1 className='common__title'>{this.props.namePage}</h1>
 
             <SearchBlockContainer />
 
             <FilterBlockContainer />
 
-            <div className="poetry__block">                
+            <div className="poetry__block">
                 {this.pageItemsRender(poetryArray, this.props.currentPage, this.props.sizePage)}
             </div>
             <div className="poetry__pagination">

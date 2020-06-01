@@ -7,6 +7,8 @@ import BackgroundContainer from './components/Background/Background';
 import About from './components/About/About';
 import StoryesContainer from './components/Storyes/StoryesContainer';
 import PagePoetryContainer from'./components/PagePoetry/PagePoetryContainer';
+import FavoritePage from './components/FavoritePage/FavoritePage';
+import Contacts from './components/Contacts/Contacts';
 
 function App() {
   return (<>
@@ -26,7 +28,10 @@ function App() {
     <Route path='/poetry-page/:id?' render={() => <>      
       <PagePoetryContainer />
     </>} />
-    <Route path='/contacts' render={() => <PoetryContainer />} />
+    <Route path='/favorite' render={() => <>
+      <FavoritePage />
+    </>} />
+    <Route path='/contacts' render={() => <Contacts />} />
   </>);
 }
 
