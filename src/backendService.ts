@@ -3,6 +3,8 @@ import { poetryItemType } from './redux/poetryPageReducer';
 
 type modeType = 'story' | 'poetry' | 'favorite';
 
+const urlData: string = String(process.env.REACT_APP_URL_PATH_DATA);
+
 const errorMessage: Array<poetryItemType> = [
     {
         id: 0,
@@ -17,22 +19,24 @@ const errorMessage: Array<poetryItemType> = [
 ]
 
 let backendService = {
-    requestToServer: (setFunction: (arr: Array<poetryItemType>) => void, responseMode: modeType) => {
-        axios.get('https://raw.githubusercontent.com/remizovMaxim/zorevaData/master/zorevaData.json')
+    requestToServer: (setFunction: (arr: Array<poetryItemType>) => void, responseMode: modeType) => {        
+        axios.get(urlData)
             .then((response: any) => {
                 let requestArr: Array<poetryItemType> = 
                 (responseMode === 'story') ? response.data.storyesData.data : response.data.poetryData.data;
                             
-                const myStorage = localStorage.getItem('favoriteStorage');
+                const myStorage: string = String(localStorage.getItem('favoriteStorage'));
                 
                 let arrFavorite: Array<poetryItemType> = [];
                 requestArr.forEach((i)=>{
+                    
+                    const isIncludesItem = myStorage.split(',').includes(String(i.id));
+                    
                     if(i.name === '***') i.name = i.text[0];                                        
-                    if(myStorage !== null && myStorage.split(',').includes(String(i.id))){
+                    if(myStorage !== 'null' && isIncludesItem){
                         i.isFavorite = true;
                     }
-                    if(responseMode === 'favorite' && i.isFavorite){
-                        console.log('favorite push')
+                    if(responseMode === 'favorite' && i.isFavorite){                        
                         arrFavorite.push(i)                
                     }
                 });

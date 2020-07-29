@@ -2,7 +2,6 @@ export function sortArray<T, K extends keyof T>(originArr: T[], propertyName: K,
 
     let arr: T[] = JSON.parse(JSON.stringify(originArr));
 
-
     arr.sort((a, b) => {
 
         let nameA = String(a[propertyName]).toLowerCase(),
@@ -15,5 +14,5 @@ export function sortArray<T, K extends keyof T>(originArr: T[], propertyName: K,
         return 0;
     });
 
-    return cb(arr);
+    cb(arr);
 }

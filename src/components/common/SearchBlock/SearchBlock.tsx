@@ -10,14 +10,24 @@ type PropsType = {
     setPoetryItems(arr: Array<poetryItemType>):void
 }
 
-const SearchBlock: React.FC<PropsType> = (props) => {
+const SearchBlock: React.FC<PropsType> = (props) => {        
+
     const sortPoetryArray = (nameSort: string): void => {
+
         props.setSearchWordInput(nameSort);
-        if (nameSort !== '') {
-            let resultSearch = props.poetryArray.filter((item: poetryItemType) => (item.name.toLowerCase().startsWith(nameSort.toLowerCase())));
+
+        if (nameSort !== '') {            
+
+            if (props.searchWord.length > nameSort.length) {
+                console.log('searchWord: ', props.searchWord);
+                console.log('nameSort: ', nameSort);                
+            }
+
+            let resultSearch = props.poetryArray.filter((item: poetryItemType) => item.name.toLowerCase().startsWith(nameSort.toLowerCase()));
             props.setPoetryItems(resultSearch);
+            
         } else {
-            backendService.backendPoetry(props.setPoetryItems);
+            backendService.backendPoetry(props.setPoetryItems);            
         }
     }
 

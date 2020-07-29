@@ -23,7 +23,11 @@
 }
 .poetry__item:hover{
     color: #444444;
+    text-shadow: none;
 }
+/* .poetry__item:hover .favButton_block_icon{
+    fill: black;
+} */
 .poetry__item:hover .poetry__item_line{
     opacity: 1;
 }

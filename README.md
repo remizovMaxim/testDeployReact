@@ -1,3 +1,7 @@
+## REACT learn app
+
+This project created for learning REACT technologies.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -24,10 +24,10 @@ const NavigationButtonsLayout = (props: PropsType) => {
     const lastNumberItem = props.poetryPage.length;
 
     const getLinkToButtons = (id: string) => {
-        if (+id === 1) {
+        if (+id === 1) {            
             return (<>
                 <div className={`${prev} ${prevDisabled}`}><a href='url/' onClick={(e)=>e.preventDefault()}>"♦prev"</a></div>
-                <div className={`${next}`}><NavLink to={`${url +id + 1}`}>"next♦"</NavLink></div>
+                <div className={`${next}`}><NavLink to={`${url}${+id+1}`}>"next♦"</NavLink></div>
             </>)
         } else if (+id >= lastNumberItem) {
             return (<>

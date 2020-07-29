@@ -57,15 +57,15 @@ class Poetry extends React.Component<PropsType>{
 
             <FilterBlockContainer />
 
-            <div className="poetry__block">
-                {this.pageItemsRender(poetryArray, this.props.currentPage, this.props.sizePage)}
-            </div>
             <div className="poetry__pagination">
-                <PagintaionItem
+                {this.props.poetryPage.length > 10 ? <PagintaionItem
                     currentPage={this.props.currentPage}
                     sizePage={this.props.sizePage}
                     arrayItems={this.props.poetryPage}
-                    setCurrentPage={this.props.setCurrentPage} />
+                    setCurrentPage={this.props.setCurrentPage} /> : <div></div>}
+            </div>
+            <div className="poetry__block">
+                {this.pageItemsRender(poetryArray, this.props.currentPage, this.props.sizePage)}
             </div>
         </div>)
     }

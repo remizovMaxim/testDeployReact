@@ -5,6 +5,7 @@ import { poetryItemType } from '../../redux/poetryPageReducer';
 import './PagePoetry.css';
 import backendService from '../../backendService';
 import NavigationButtonsContainer from '../common/NavigationButtons/NavigationButtons';
+import BackgroundContainer, { Background } from '../Background/Background';
 
 type PathParamsType = {
     id: string,
@@ -17,8 +18,12 @@ type PropsType = RouteComponentProps<PathParamsType> & {
 
 class PagePoetry extends React.Component<PropsType>{
     constructor(props: PropsType) {
-        super(props);        
+        super(props);
         if (!this.props.poetryPage[0].author) backendService.backendPoetry(this.props.setPoetryItems);
+    }    
+
+    componentDidMount(){
+        backendService.backendPoetry(this.props.setPoetryItems);
     }
 
     render() {
@@ -34,14 +39,18 @@ class PagePoetry extends React.Component<PropsType>{
             return <p className='poetry-page__wrapper_row' key={keyId++}>{i}</p>
         }) : '';
 
-        return (<div className='poetry__wrapper'>
-            <div className='poetry-page__wrapper'>
-                <p className='poetry-page__wrapper_name'>{poetryObject ? poetryObject.name : ''}</p>
-                {poetryRows}
-                <p className='poetry-page__wrapper_author'>{poetryObject ? poetryObject.author : ''}</p>
-            </div>
-            <NavigationButtonsContainer />
-        </div>)
+        return (
+            <>
+            {poetryObject?.background ? <Background url={poetryObject.background}/> : <BackgroundContainer />}
+                <div className='poetry__wrapper'>
+                    <div className='poetry-page__wrapper'>
+                        <p className='poetry-page__wrapper_name'>{poetryObject ? poetryObject.name : ''}</p>
+                        {poetryRows}
+                        <p className='poetry-page__wrapper_author'>{poetryObject ? poetryObject.author : ''}</p>
+                    </div>
+                    <NavigationButtonsContainer />
+                </div>
+            </>)
     }
 }
 

@@ -6,7 +6,7 @@ type PropsType = {
     url: string,    
 }
 
-export const Background: React.FC<PropsType> = (props) => {    
+export const Background: React.FC<PropsType> = (props) => {        
     return (
         <div className='background'>
             <img src={props.url} alt="background" />
